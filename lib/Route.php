@@ -47,7 +47,10 @@ class Route {
     }
 
     private static function error() {
-        d(new \Exception("No suck route"));
+        View::run('error.index', [
+            'code' => 404,
+            'message' => 'Такой страницы не существует :('
+        ]);
     }
 }
 

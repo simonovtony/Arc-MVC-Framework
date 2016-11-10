@@ -87,6 +87,7 @@ div.block.center {
 
 ul.paginator {
     list-style-type: none;
+    margin-right: 100px;
 }
 
 ul.paginator li {
@@ -119,4 +120,37 @@ ul.paginator li a:hover {
 
 .writer textarea {
     color: black;
+}
+
+.popular {
+    position: relative;
+    width: 1024px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.blogs {
+    position: relative;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.content > .blogs .blog {
+    border-bottom: 1px dashed white;
+}
+
+#top1, #top2, #top3, #top4, #top5{
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    opacity:0;
+}
+
+.content.error {
+    min-height: 1200px;
+}
+
+a {
+    color: red;
+    text-decoration: underline;
 }

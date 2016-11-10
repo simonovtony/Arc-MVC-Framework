@@ -33,7 +33,10 @@ function d($arg) {
 }
 
 function abort($code, $message) {
-    d(new Exception());
+    \Project\Lib\View::run("error.index", [
+        'code' => $code,
+        'message' => $message,
+    ]);
 }
 
 ?>

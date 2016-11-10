@@ -1,6 +1,6 @@
 # Тестовое задание v-jet
 
-### Техническое задание
+## Техническое задание
 
 Необходимо, на чистом PHP, реализовать публичный мини-блог,  в котором любой гость может создавать записи, а другие гости имеют право комментировать записи. Авторизация не нужна.
 
@@ -14,5 +14,78 @@
 
 Предоставить задание в открытом репозитории, с доступной документацией по установке и настройке.
 
-# Установка
+## Описание
 
+Поскольку нужно было написать программу на чистом PHP и MySQL.
+Я сам написал мини mvc framework(без композера, с нуля) для для выполнения задания.
+При скачивании с репозитория,
+всё что надо сделать это установить xampp и настроить по умолчанию
+и проделать шаги описанные далее.
+В самом проекте нужно менять только
+config/db.php и импортировать файл database.sql в mysql
+с использованием консольной утилиты mysql или phpmyadmin
+l$ - bash терминал linux
+$w - git bash консоль windows
+
+## Технические требования
+
+Windows Server/Linux Debian
+xampp 3.2.2
+git bash
+
+## Установка и настройка
+
+// Открываем git bash/терминал
+
+w$ cd /home/xampp/htdocs/
+l$ cd c/xampp/htdocs/
+
+git clone https://github.com/simonovtony/v-jet.git project
+
+// -u<пользователь> -p<пароль>
+mysql -uroot -p
+w$ source c:/xampp/htdocs/project/config/database.sql
+l$ source /home/xampp/htdocs/project/conifig/database.sql
+exit
+
+vim ./project/config/db.php
+// Меняем host, dbname, user и password в соответсвии с настройками mysql
+------------------------------------------------------------
+return [
+    'dsn' => 'mysql:host=localhost;dbname=project_local',
+    'user' => 'root',
+    'password' => '',
+];
+------------------------------------------------------------
+:qw
+
+w$ cd c/xampp/apache/conf/extra
+l$ cd /home/xampp/apache/conf/extra
+vim ./httpd-vhosts.conf
+// Добавляем
+------------------------------------------------------------
+<VirtualHost *:80>
+    ServerAdmin admin@project.local
+    l$ DocumentRoot "с/xampp/htdocs/project"
+    w$ DocumentRoot "/home/xampp/htdocs/project"
+    ServerName project.local
+    ServerAlias www.project.local
+    ErrorLog "logs/project.local-error.log"
+    CustomLog "logs/project.local-access.log" common
+</VirtualHost>
+------------------------------------------------------------
+:qw
+
+w$ cd c/windows/system32/drivers/etc
+l$ cd /etc
+
+vim ./hosts
+// Добавляем
+------------------------------------------------------------
+127.0.0.1 project.local
+127.0.0.1 www.project.local
+------------------------------------------------------------
+:qw
+
+w$ c/xampp/xampp-control
+l$ sudo /home/xampp/lampp start

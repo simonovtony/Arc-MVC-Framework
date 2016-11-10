@@ -6,8 +6,12 @@
     <h1>Статьи</h1>
     <div class="popular">
         <?php if(count($top) > 0): ?>
+            <script>
+                blog_count = <?= count($top) ?>
+            </script>
+            <?php $i = 1; ?>
             <?php foreach($top as $blog): ?>
-                <div class="blog">
+                <div class="blog" id="top<?= $i++ ?>">
                     <h3><?= $blog['title'] ?></h3>
                     <div>
                         <?= $blog['content'] ?>
