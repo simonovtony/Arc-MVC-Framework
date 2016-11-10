@@ -1,0 +1,122 @@
+/* style.css */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+    background: black;
+}
+
+body .content {
+    display: block;
+    width: 1200px;
+    margin: 0 auto;
+    height: auto;
+    background: gray;
+    color: white;
+}
+
+body > header, body > footer {
+    display: block;
+    width: 100%;
+}
+
+body > header > nav {
+    display: block;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+    height: auto;
+    background: black;
+}
+
+body > header > nav > .menu {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    list-style-type: none;
+    background: #CC0000;
+}
+
+body > header > nav > .menu li {
+    display: inline-block;
+}
+
+body > header > nav > .menu li a {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'Roboto';
+    font-weight: 200;
+    text-decoration: none;
+    margin-right: -4px;
+    transition: all 0.5s;
+}
+
+body > header > nav > .menu li a.active {
+    background-color: red;
+    color: white;
+}
+
+body > header > nav > .menu li a:hover {
+    background-color: red;
+    color: white;
+}
+
+div.block {
+    display: block;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0px;
+    height: auto;
+}
+
+div.block.center {
+    text-align: center;
+}
+
+ul.paginator {
+    list-style-type: none;
+}
+
+ul.paginator li {
+    display: inline-block;
+}
+
+ul.paginator li a {
+    display: inline-block;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+ul.paginator li a:hover {
+    box-shadow: 0px 0px 10px white;
+}
+
+.writer button {
+    color: black;
+}
+.writer input {
+    color: black;
+}
+
+.writer textarea {
+    color: black;
+}
