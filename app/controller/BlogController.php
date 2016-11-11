@@ -107,7 +107,7 @@ class BlogController extends Controller {
     }
 
     public function create() {
-        d(Session::get('token'));
+        
         if(!in_array($_POST['token'], Session::get('token'))) {
             abort(500, 'Ошибка сервера!');
         }
