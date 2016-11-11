@@ -9,9 +9,8 @@ class Session {
     }
 
     public static function start() {
-        if(session_id() != "" || isset($_COOKIE[session_name()])) {
-            session_start();
-        }
+        session_start();
+        Session::add('token', md5(mt_rand()));
     }
 
     public static function destroy() {
@@ -33,18 +32,12 @@ class Session {
     }
 
     public static function get($key) {
-        if(isset($_SESSION[$key]))
-            return $_SESSION[$key];
-        return null;
+        return $_SESSION[$key];
     }
 
     public static function remove($key) {
         if(isset($_SESSION[$key]))
             unset($_SESSION[$key]);
-    }
-
-    public static function generateToken() {
-        Session::add('token', md5(mt_rand()));
     }
 
     public static function getLastToken() {

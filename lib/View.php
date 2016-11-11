@@ -11,8 +11,6 @@ class View {
             }
         }
 
-        Session::generateToken();
-
         $name = preg_replace('/\.+/s', DIRECTORY_SEPARATOR, $name);
 
         require VIEW_PATH . DIRECTORY_SEPARATOR . $name . '.php';
