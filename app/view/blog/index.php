@@ -58,10 +58,11 @@
 
         <div class="writer">
             <form action="<?= \Project\Lib\Url::to('/blog/create') ?>" method="post">
+                <input type="hidden" name="token" value="<?= \Project\Lib\Session::getLastToken() ?>">
                 Оглавление: <input name="title" type="text" required><br>
                 Автор: <input name="author"  type="text" required><br>
                 Контент:<br>
-                <textarea name="content" class="tinymce"></textarea><br>
+                <textarea name="content" class="comment-text"></textarea><br>
                 <button type="submit">Публиковать</button>
             </form>
         </div>

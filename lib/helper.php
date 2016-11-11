@@ -37,6 +37,7 @@ function abort($code, $message) {
         'code' => $code,
         'message' => $message,
     ]);
+    exit;
 }
 
 ?>

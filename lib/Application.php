@@ -8,6 +8,7 @@ class Application {
     public function __construct($setting) {
         $this->setting = $setting;
         DB::run();
+        Session::run();
     }
 
     public function run() {

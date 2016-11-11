@@ -5,6 +5,7 @@ namespace Project\App\Controller;
 use Project\Lib\Controller;
 use Project\Lib\DB;
 use Project\Lib\Redirect;
+use Project\Lib\Session;
 use Project\Lib\Translit;
 use Project\Lib\Url;
 use Project\Lib\View;
@@ -25,7 +26,7 @@ class BlogController extends Controller {
         $top = DB::select($sql);
         if(count($top) > 0) {
             foreach($top as & $blog) {
-                $blog['title'] = htmlentities($blog['title']);
+                $blog['title'] = $blog['title'];
                 $blog['content'] = $blog['content'];
                 if(mb_strlen($blog['content']) > 100) {
                     $blog['content'] = mb_substr($blog['content'], 0, 100) . '...';
@@ -60,7 +61,7 @@ class BlogController extends Controller {
 
         if(count($blogs) > 0) {
             foreach($blogs as & $blog) {
-                $blog['title'] = htmlentities($blog['title']);
+                $blog['title'] = $blog['title'];
                 $blog['content'] = $blog['content'];
                 if(mb_strlen($blog['content']) > 100) {
                     $blog['content'] = mb_substr($blog['content'], 0, 100) . '...';
@@ -106,20 +107,26 @@ class BlogController extends Controller {
     }
 
     public function create() {
-        // VALIDATOR
-        $title = isset($_POST['title']) ? $_POST['title'] : null;
-        if($title === null || mb_strlen($title) < 1)
+        if(!in_array($_POST['token'], Session::get('token'))) {
+            abort(500, 'Ошибка сервера!');
+        }
+
+        $title = isset($_POST['title']) ? htmlentities(strip_tags($_POST['title']), ENT_QUOTES, 'UTF-8') : "";
+        if(mb_strlen($title) < 1) {
             abort(406, 'Не введен заголовок статьи');
+        }
 
-        $content = isset($_POST['content']) ? $_POST['content'] : null;
-        if($content === null || mb_strlen($content) < 1)
+        $content = isset($_POST['content']) ? htmlentities(strip_tags($_POST['content']), ENT_QUOTES, 'UTF-8') : "";
+        if(mb_strlen($content) < 1) {
             abort(406, 'Не введен контент статьи');
+        }
 
-        $author = isset($_POST['author']) ? $_POST['author'] : null;
-        if($author === null || mb_strlen($author) < 1)
+        $author = isset($_POST['author']) ? htmlentities(strip_tags($_POST['author']), ENT_QUOTES, 'UTF-8') : "";
+        if(mb_strlen($author) < 1) {
             abort(406, 'Не введен автор статьи');
+        }
 
-        $url = Translit::convert($title);
+        $url = Translit::convert($title) . '-' . date('d-m-Y', time());
 
         DB::insert("
             INSERT INTO `blogs` (`id`, `title`, `url`, `content`, `author`, `created_at`, `updated_at`)

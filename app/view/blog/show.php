@@ -30,10 +30,11 @@
 
             <div class="writer">
                 <form action="<?= \Project\Lib\Url::to('/comment/create') ?>" method="post">
+                    <input type="hidden" name="token" value="<?= \Project\Lib\Session::getLastToken() ?>">
                     <input type="hidden" name="id" value="<?= $blog['id'] ?>">
                     Имя: <input name="name" type="text" required><br>
                     Комментарий:<br>
-                    <textarea name="text" class="comment-text"></textarea><br>
+                    <textarea name="text" class="comment-text" required></textarea><br>
                     <button type="submit">Отправить</button>
                 </form>
             </div>
